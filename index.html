@@ -398,7 +398,7 @@
         </div>
     </nav>
      <!-- Hero Section -->
-    <section class="hero">
+    <section id="heroMaug" class="hero">
         <div class="hero-content">
             <img src="img/developer.png" alt="Ahan Jaiswal - Software Developer" class="developer-img">
             <h1>Hi, I'm <span class="highlight">Ahan Jaiswal</span></h1>
@@ -475,6 +475,22 @@
         <!-- Back to Top Button -->
         <button class="back-to-top" onclick="scrollToTop()">&#8679;</button>
     </footer>
+     <!-- JavaScript Fix for Navbar Overlap -->
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function adjustMargin() {
+                const navbar = document.querySelector(".navbar");
+                const projectsSection = document.getElementById("heroMaug");
+        
+                if (navbar && projectsSection) {
+                    const navbarHeight = navbar.offsetHeight;
+                    projectsSection.style.marginTop = navbarHeight + "px";
+                }
+            }
+            adjustMargin();
+            window.addEventListener("resize", adjustMargin);
+        });
+        </script>
     <!-- JavaScript for Smooth Scroll -->
     <script>
         window.addEventListener("scroll", function () {
