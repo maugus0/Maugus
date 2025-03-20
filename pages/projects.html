@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maugus | Projects</title>
+    <link rel="icon" type="image/png" href="../img/favicon.png"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+       body {
+            background-color: black;
+            color           : white;
+            text-align      : center;
+            font-family: "Winky Sans", sans-serif;
+            font-optical-sizing: auto;
+        }
+        /* Navbar Styling */
+        .navbar {
+        font-family: "Bebas Neue", sans-serif;
+        background-color: black;
+        transition: background-color 0.3s, box-shadow 0.3s ease-in-out;
+        padding: 15px 0;
+        box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
+        }
+        /* Navbar on Scroll */
+        .navbar.scrolled {
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+        backdrop-filter: blur(8px); /* Soft blur effect */
+        }
+        /* Brand Logo */
+        .navbar-brand img {
+            height: 40px;
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Slight zoom effect on logo hover */
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        /* Navbar Links */
+        .navbar-nav .nav-link,
+        .navbar-nav .nav-ex {
+            color: white;
+            font-weight: 500;
+            margin: 0 10px;
+            padding-top: 20px;
+            transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            position: relative;
+        }
+        /* Hover Effect with Red Gradient */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-ex:hover {
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform: scale(1.05);
+        }
+        /* Underline Animation */
+        .navbar-nav .nav-link::after,
+        .navbar-nav .nav-ex::after {
+            content: "";
+            display: block;
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+        /* Expand underline on hover */
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-ex:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        /* Active Nav Link */
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-ex.active {
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        /* Mobile Menu Adjustments */
+        @media (max-width: 768px) {
+            .navbar-nav .nav-link,
+            .navbar-nav .nav-ex {
+                text-align: center;
+                padding: 10px;
+                font-size: 1.2rem;
+            }
+        }
+        /* Projects Styling */
+        #projects {
+        margin-top: 80px;
+        padding-top: 80px; /* Default padding in case JavaScript fails */
+        }
+        @media (max-width: 768px) {
+            #projects {
+                margin-top: 100px;
+                padding-top: 100px; /* Adjust for mobile */
+            }
+        }
+        .project-card {
+        margin-bottom: 20px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.7s ease-in-out forwards;
+        }
+        .project-card img {
+            transition: transform 0.3s ease-in-out;
+        }
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        .card-img-top {
+            height: 200px;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .card-body {
+                text-align: center;
+            }
+        }
+        /* Footer Styling */
+        .footer {
+            padding: 25px;
+            text-align: center;
+            background: linear-gradient(135deg, #111, #222);
+            color: white;
+            font-size: 1rem;
+            position: relative;
+            box-shadow: 0px -4px 10px rgba(255, 77, 77, 0.3);
+        }
+        /* Footer Heading */
+        .footer h2 {
+            font-family: "Jersey 15", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.8rem;
+            color: white;
+            text-transform: uppercase;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        /* Hover Effect on Footer Heading */
+        .footer h2:hover {
+            color: #ff4d4d;
+            transform: scale(1.1);
+        }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background: linear-gradient(90deg, #ff4d4d, #d62828);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        }
+        /* Hover Effect for Back to Top */
+        .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(255, 77, 77, 0.7);
+            background: linear-gradient(90deg, #d62828, #ff4d4d);
+        }
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer h2 {
+                font-size: 1.5rem;
+            }
+            .footer-links a {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../img/owl.png" alt="Maugus / Ahan Jaiswal">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html"><h2>Projects</h2></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="connect.html"><h2>Connect</h2></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container py-5">
+        <div class="text-center mb-4">
+
+            <!-- Search & Sort Row -->
+            <div class="row justify-content-center mt-3">
+                <div class="col-md-6">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search projects...">
+                </div>
+                <div class="col-md-4 mt-2 mt-md-0">
+                    <select id="sortDropdown" class="form-select">
+                        <option value="name-asc">Sort: A-Z (Alphabetical)</option>
+                        <option value="name-desc">Sort: Z-A (Reverse Alphabetical)</option>
+                        <option value="date-new">Sort: Newest First</option>
+                        <option value="date-old">Sort: Oldest First</option>
+                        <option value="tech">Sort: Tech Stack (A-Z)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="projectsContainer">
+            <!-- Project Cards -->
+            <div class="col-md-4 project-card" data-name="GoStatus" data-date="2022-06-27" data-tech="Go">
+                <div class="card text-white bg-dark shadow-lg">
+                    <img src="../img/goStatus1.png" class="card-img-top" alt="GoStatus">
+                    <div class="card-body">
+                        <h5 class="card-title">GoStatus</h5>
+                        <p class="card-text">
+                            GoStatus is a Go-based website availability checker that sends HTTP GET requests to verify online status. It monitors popular sites and ensures they are accessible, providing real-time status updates.
+                        </p>
+                        <p><small class="text-danger">Tech: Go</small></p>
+                        <a href="https://github.com/maugus0/GoStatus" class="btn btn-danger" target="_blank">
+                            <img src="../img/github.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 project-card" data-name="Pantheon" data-date="2022-02-22" data-tech="PHP">
+                <div class="card text-white bg-dark shadow-lg">
+                    <img src="../img/Pantheon1.png" class="card-img-top" alt="Pantheon">
+                    <div class="card-body">
+                        <h5 class="card-title">Pantheon</h5>
+                        <p class="card-text">
+                            Pantheon is a PHP and MySQL-based content management system designed for building dynamic websites. It functions similarly to WordPress, Joomla, and Drupal, offering easy customization and database-driven content management.
+                        </p>
+                        <p><small class="text-danger">Tech: HTML/CSS, JavaScript, PHP</small></p>
+                        <a href="https://github.com/maugus0/Pantheon" class="btn btn-danger" target="_blank">
+                            <img src="../img/github.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 project-card" data-name="Psycolops" data-date="2025-03-10" data-tech="Bootstrap">
+                <div class="card text-white bg-dark shadow-lg">
+                    <img src="../img/Psycolops.png" class="card-img-top" alt="Psycolops">
+                    <div class="card-body">
+                        <h5 class="card-title">Psycolops</h5>
+                        <p class="card-text">Psycolops is a portfolio website for a Designer and Art Director aspirant. Developed from provided Figma designs, it ensures full responsiveness, accurate design replication, and an intuitive user experience.</p>
+                        <p><small class="text-danger">Tech: HTML/CSS, Bootstrap, JavaScript</small></p>
+                        <a href="https://github.com/maugus0/Psycolops" class="btn btn-danger" target="_blank">
+                            <img src="../img/github.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 project-card" data-name="Psycolops" data-date="2025-03-19" data-tech="Bootstrap">
+                <div class="card text-white bg-dark shadow-lg">
+                    <img src="../img/Maugus.png" class="card-img-top" alt="Maugus">
+                    <div class="card-body">
+                        <h5 class="card-title">Maugus</h5>
+                        <p class="card-text">
+                            Maugus is my personal portfolio website designed as a digital resume. Built with Bootstrap and JavaScript, it offers a clean, responsive, and minimalist design to showcase my skills and projects.
+                        </p>
+                        <p><small class="text-danger">Tech: HTML/CSS, Bootstrap, JavaScript</small></p>
+                        <a href="https://github.com/maugus0/Psycolops" class="btn btn-danger" target="_blank">
+                            <img src="../img/github.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 project-card" data-name="ShuffleX" data-date="2022-06-22" data-tech="Go">
+                <div class="card text-white bg-dark shadow-lg">
+                    <img src="../img/ShuffleX1.png" class="card-img-top" alt="ShuffleX">
+                    <div class="card-body">
+                        <h5 class="card-title">ShuffleX</h5>
+                        <p class="card-text">
+                            ShuffleX is a Golang package simulating a standard 52-card deck with various manipulation functions. It includes structured unit tests to validate functionality, ensuring reliable deck shuffling, drawing, and interaction.
+                        </p>
+                        <p><small class="text-danger">Tech: Go</small></p>
+                        <a href="https://github.com/maugus0/ShuffleX" class="btn btn-danger" target="_blank">
+                            <img src="../img/github.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript Fix for Navbar Overlap -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function adjustMargin() {
+                const navbar = document.querySelector(".navbar");
+                const projectsSection = document.getElementById("projects");
+        
+                if (navbar && projectsSection) {
+                    const navbarHeight = navbar.offsetHeight;
+                    projectsSection.style.marginTop = navbarHeight + "px";
+                }
+            }
+            adjustMargin();
+            window.addEventListener("resize", adjustMargin);
+        });
+        </script>
+
+    <!-- JavaScript for Search & Sorting -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("searchInput");
+        const sortDropdown = document.getElementById("sortDropdown");
+        const projectsContainer = document.getElementById("projectsContainer");
+
+        searchInput.addEventListener("input", function () {
+            const filter = searchInput.value.toLowerCase();
+            document.querySelectorAll(".project-card").forEach(card => {
+                const name = card.getAttribute("data-name").toLowerCase();
+                card.style.display = name.includes(filter) ? "block" : "none";
+            });
+        });
+
+        sortDropdown.addEventListener("change", function () {
+            const sortType = this.value;
+            const cards = Array.from(document.querySelectorAll(".project-card"));
+
+            if (sortType === "name-asc") {
+                cards.sort((a, b) => a.getAttribute("data-name").localeCompare(b.getAttribute("data-name")));
+            } else if (sortType === "name-desc") {
+                cards.sort((a, b) => b.getAttribute("data-name").localeCompare(a.getAttribute("data-name")));
+            } else if (sortType === "date-new") {
+                cards.sort((a, b) => new Date(b.getAttribute("data-date")) - new Date(a.getAttribute("data-date")));
+            } else if (sortType === "date-old") {
+                cards.sort((a, b) => new Date(a.getAttribute("data-date")) - new Date(b.getAttribute("data-date")));
+            } else if (sortType === "tech") {
+                cards.sort((a, b) => a.getAttribute("data-tech").localeCompare(b.getAttribute("data-tech")));
+            }
+
+            cards.forEach(card => projectsContainer.appendChild(card));
+        });
+    });
+    </script>
+
+    <footer class="footer">
+        <h2>Let's turn great ideas into scalable cloud native solutions.</h2>   
+        <!-- Copyright & Attribution -->
+        <p>&copy; 2025 Maugus | Ahan Jaiswal.</p>
+        <!-- Back to Top Button -->
+        <button class="back-to-top" onclick="scrollToTop()">&#8679;</button>
+    </footer>
+    <!-- JavaScript for Smooth Scroll -->
+    <script>
+        window.addEventListener("scroll", function () {
+            var backToTopButton = document.querySelector(".back-to-top");
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        });
+    
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

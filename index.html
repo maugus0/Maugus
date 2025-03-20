@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maugus | Ahan Jaiswal</title>
+    <link rel="icon" type="image/png" href="img/favicon.png"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+       body {
+            background-color: black;
+            color           : white;
+            text-align      : center;
+            font-family: "Winky Sans", sans-serif;
+            font-optical-sizing: auto;
+        }
+        /* Navbar Styling */
+        .navbar {
+        font-family: "Bebas Neue", sans-serif;
+        background-color: black;
+        transition: background-color 0.3s, box-shadow 0.3s ease-in-out;
+        padding: 15px 0;
+        box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
+        }
+        /* Navbar on Scroll */
+        .navbar.scrolled {
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+        backdrop-filter: blur(8px); /* Soft blur effect */
+        }
+        /* Brand Logo */
+        .navbar-brand img {
+            height: 40px;
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Slight zoom effect on logo hover */
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        /* Navbar Links */
+        .navbar-nav .nav-link,
+        .navbar-nav .nav-ex {
+            color: white;
+            font-weight: 500;
+            margin: 0 10px;
+            padding-top: 20px;
+            transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            position: relative;
+        }
+        /* Hover Effect with Red Gradient */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-ex:hover {
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform: scale(1.05);
+        }
+        /* Underline Animation */
+        .navbar-nav .nav-link::after,
+        .navbar-nav .nav-ex::after {
+            content: "";
+            display: block;
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+        /* Expand underline on hover */
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-ex:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        /* Active Nav Link */
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-ex.active {
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        /* Mobile Menu Adjustments */
+        @media (max-width: 768px) {
+            .navbar-nav .nav-link,
+            .navbar-nav .nav-ex {
+                text-align: center;
+                padding: 10px;
+                font-size: 1.2rem;
+            }
+        }
+        /* Hero Section Styling */
+        .hero {
+            height: 110vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #111, #222);
+            color: white;
+            animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Floating Particles for a Subtle Effect */
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('img/particles.png') repeat;
+            opacity: 0.05;
+            animation: moveParticles 20s linear infinite;
+        }
+        @keyframes moveParticles {
+            from { background-position: 0 0; }
+            to { background-position: 100% 100%; }
+        }
+        /* Hero Content */
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            z-index: 2;
+        }
+        /* Profile Image */
+        .developer-img {
+            width: 160px;
+            border-radius: 50%;
+            box-shadow: 0px 4px 20px rgba(255, 77, 77, 0.5);
+            margin-bottom: 15px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .developer-img:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 25px rgba(255, 77, 77, 0.8);
+        }
+        /* Headline */
+        h1 {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        /* Highlighted Text */
+        .highlight {
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Hero Subtext */
+        .hero-text {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .hero-subtext {
+            font-size: 1rem;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        /* Smooth Hover Effect on Heading */
+        h1:hover {
+            transform: scale(1.05);
+        }
+        /* Skills Row */
+        .skills {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        /* Skill Box */
+        .skill {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.3s, background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        /* Hover Effect for Skills */
+        .skill:hover {
+            transform: scale(1.1);
+            background: #e63946;
+            box-shadow: 0px 4px 15px rgba(255, 77, 77, 0.5);
+            color: white;
+        }
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Responsive Design for Smaller Screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .hero-text {
+                font-size: 1.1rem;
+            }
+            .skill {
+                padding: 10px 14px;
+            }
+        }
+        /* Timeline Section */
+        #timeline {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .timeline-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        /* Timeline Container */
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: relative;
+        }
+        .timeline-container::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 0, 0, 0.6));
+            transform: translateX(-50%);
+        }
+        /* Timeline Item */
+        .timeline-item {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .timeline-content {
+            background: #111;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+        }
+        .timeline-content:hover {
+            transform: scale(1.05);
+        }
+        /* Adding red/white gradient to links */
+        .timeline-content a {
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .timeline-content a:hover {
+            text-decoration: underline;
+        }
+        /* Date Style */
+        .timeline-date {
+            display: block;
+            margin-top: 10px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        /* Horizontal View (PC, Tablets) */
+        @media (min-width: 768px) {
+            .timeline-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 50px;
+                position: relative;
+            }
+            .timeline-container::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 0, 0, 0.6));
+            }
+            .timeline-item {
+                width: 45%;
+                position: relative;
+            }
+            .timeline-item::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: -25px;
+                width: 12px;
+                height: 12px;
+                background: red;
+                border-radius: 50%;
+                box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+            }
+        }
+        /* Footer Styling */
+        .footer {
+            padding: 25px;
+            text-align: center;
+            background: linear-gradient(135deg, #111, #222);
+            color: white;
+            font-size: 1rem;
+            position: relative;
+            box-shadow: 0px -4px 10px rgba(255, 77, 77, 0.3);
+        }
+        /* Footer Heading */
+        .footer h2 {
+            font-family: "Jersey 15", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.8rem;
+            color: white;
+            text-transform: uppercase;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        /* Hover Effect on Footer Heading */
+        .footer h2:hover {
+            color: #ff4d4d;
+            transform: scale(1.1);
+        }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background: linear-gradient(90deg, #ff4d4d, #d62828);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        }
+        /* Hover Effect for Back to Top */
+        .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(255, 77, 77, 0.7);
+            background: linear-gradient(90deg, #d62828, #ff4d4d);
+        }
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer h2 {
+                font-size: 1.5rem;
+            }
+            .footer-links a {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/spider.png" alt="Maugus / Ahan Jaiswal">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/projects.html"><h2>Projects</h2></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/connect.html"><h2>Connect</h2></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+     <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="img/developer.png" alt="Ahan Jaiswal - Software Developer" class="developer-img">
+            <h1>Hi, I'm <span class="highlight">Ahan Jaiswal</span></h1>
+            <p class="hero-text">Senior Analyst at <strong>Bunge</strong> | BE in Computer Science (Chitkara University, 2019-23)</p>
+            <p class="hero-subtext">
+                Passionate about crafting scalable and innovative software solutions.  
+                Always looking to upskill myself, in love with the Software Development and Testing Lifecycle,  
+                pursuing efficiency with a keen eye for detail.
+            </p>
+
+            <!-- Skills Row -->
+            <div class="skills">
+                <span class="skill">JavaScript</span>
+                <span class="skill">PHP</span>
+                <span class="skill">Laravel</span>
+                <span class="skill">React.js</span>
+                <span class="skill">Node.js</span>
+                <span class="skill">Golang</span>
+                <span class="skill">SQL</span>
+                <span class="skill">HTML</span>
+                <span class="skill">CSS</span>
+                <span class="skill">Bootstrap</span>
+                <span class="skill">SDLC</span>
+                <span class="skill">QA</span>
+                <span class="skill">Automation</span>
+                <span class="skill">Proactive Monitoring</span>
+                <span class="skill">Agile</span>
+                <span class="skill">Scrum</span>
+                <span class="skill">Leadership</span>
+                <span class="skill">Ownership</span>
+                <span class="skill">Communicaton Skills</span>
+            </div>
+        </div>
+    </section>
+    <!-- Timeline Section -->
+    <section id="timeline">
+        <h2 class="timeline-title">My Story in Tech</h2>
+        <div class="timeline-container">
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Senior Analyst at <a href="https://www.bunge.com" target="_blank">Bunge</a></h3>
+                    <span class="timeline-date">July 2024 - Present</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Analyst Trainee at <a href="https://www.bunge.com" target="_blank">Bunge</a></h3>
+                    <span class="timeline-date">July 2023 - June 2024</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>PHP Web Developer at <a href="https://www.sparxitsolutions.com" target="_blank">SparxIT Solutions</a></h3>
+                    <span class="timeline-date">Jan 2023 - May 2023</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Product Engineering Intern at <a href="https://www.gojek.io" target="_blank">Gojek Tech</a></h3>
+                    <span class="timeline-date">May 2022 - December 2022</span>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <footer class="footer">
+        <h2>Let's turn great ideas into scalable cloud native solutions.</h2>   
+        <!-- Copyright & Attribution -->
+        <p>&copy; 2025 Maugus | Ahan Jaiswal.</p>
+        <!-- Back to Top Button -->
+        <button class="back-to-top" onclick="scrollToTop()">&#8679;</button>
+    </footer>
+    <!-- JavaScript for Smooth Scroll -->
+    <script>
+        window.addEventListener("scroll", function () {
+            var backToTopButton = document.querySelector(".back-to-top");
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        });
+    
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

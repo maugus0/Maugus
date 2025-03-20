@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maugus | Connect</title>
+    <link rel="icon" type="image/png" href="../img/favicon.png"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+       body {
+            background-color: black;
+            color           : white;
+            text-align      : center;
+            font-family: "Winky Sans", sans-serif;
+            font-optical-sizing: auto;
+        }
+        /* Navbar Styling */
+        .navbar {
+        font-family: "Bebas Neue", sans-serif;
+        background-color: black;
+        transition: background-color 0.3s, box-shadow 0.3s ease-in-out;
+        padding: 15px 0;
+        box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
+        }
+        /* Navbar on Scroll */
+        .navbar.scrolled {
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+        backdrop-filter: blur(8px); /* Soft blur effect */
+        }
+        /* Brand Logo */
+        .navbar-brand img {
+            height: 40px;
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Slight zoom effect on logo hover */
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        /* Navbar Links */
+        .navbar-nav .nav-link,
+        .navbar-nav .nav-ex {
+            color: white;
+            font-weight: 500;
+            margin: 0 10px;
+            padding-top: 20px;
+            transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            position: relative;
+        }
+        /* Hover Effect with Red Gradient */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-ex:hover {
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform: scale(1.05);
+        }
+        /* Underline Animation */
+        .navbar-nav .nav-link::after,
+        .navbar-nav .nav-ex::after {
+            content: "";
+            display: block;
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+        /* Expand underline on hover */
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-ex:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        /* Active Nav Link */
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-ex.active {
+            background: linear-gradient(90deg, #ffffff, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        /* Mobile Menu Adjustments */
+        @media (max-width: 768px) {
+            .navbar-nav .nav-link,
+            .navbar-nav .nav-ex {
+                text-align: center;
+                padding: 10px;
+                font-size: 1.2rem;
+            }
+        }
+        /* About Section */
+        .about-section {
+            background: #000; /* Pure black background */
+            color: white;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        /* Container */
+        .containerMaug {
+            max-width: 750px;
+            padding: 20px;
+        }
+        /* Title */
+        .about-title {
+            font-family: "Poppins", sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        .about-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #ff4d4d;
+            margin: 8px auto 0;
+            border-radius: 5px;
+        }
+        /* Paragraph Styling */
+        .about-text {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+        /* Highlighted Text */
+        .highlight {
+            font-weight: 600;
+            color: #ff4d4d;
+        }
+        /* Social Icons */
+        .social-icons {
+            margin-top: 25px;
+        }
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 8px;
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.7));
+        }
+        /* Fade-in Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 26px;
+            }
+            .about-text {
+                font-size: 15px;
+            }
+            .social-icon {
+                width: 42px;
+                height: 42px;
+            }
+        }
+        /* Footer Styling */
+        .footer {
+            padding: 25px;
+            text-align: center;
+            background: linear-gradient(135deg, #111, #222);
+            color: white;
+            font-size: 1rem;
+            position: relative;
+            box-shadow: 0px -4px 10px rgba(255, 77, 77, 0.3);
+        }
+        /* Footer Heading */
+        .footer h2 {
+            font-family: "Jersey 15", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.8rem;
+            color: white;
+            text-transform: uppercase;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        /* Hover Effect on Footer Heading */
+        .footer h2:hover {
+            color: #ff4d4d;
+            transform: scale(1.1);
+        }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background: linear-gradient(90deg, #ff4d4d, #d62828);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        }
+        /* Hover Effect for Back to Top */
+        .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(255, 77, 77, 0.7);
+            background: linear-gradient(90deg, #d62828, #ff4d4d);
+        }
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer h2 {
+                font-size: 1.5rem;
+            }
+            .footer-links a {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../img/squid.png" alt="Maugus / Ahan Jaiswal">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html"><h2>Projects</h2></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="connect.html"><h2>Connect</h2></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="about-section">
+        <div class="containerMaug">
+            <h2 class="about-title">About Me</h2>
+            <p class="about-text">
+                From a young age, I found myself drawn to the world of software development. At just 10 years old, I built my first website, experimenting with Blogger and basic web technologies. What started as curiosity quickly turned into a deep-seated passion. I would spend hours tweaking layouts, learning HTML and CSS, and exploring how the internet worked. The ability to create something from scratch and make it accessible to the world fascinated me, and that excitement has only grown stronger over the years.
+            </p>
+            <p class="about-text">
+                During my college years, I had the opportunity to turn my love for problem-solving into action. I joined a startup called <span class="highlight">Erase Crave</span>, founded by <span class="highlight">Ujjwal Baluja</span>, which aimed to solve a major issue faced by hostel students living on highways. At the time, food delivery services like Zomato and Swiggy didn’t operate in these remote areas, leaving students without options for late-night meals. 
+                <br><br><span class="highlight">Our solution?</span> A delivery network operating between 11 PM – 5 AM, ensuring that students could get food right to their rooms without affecting campus business hours. 
+                We worked relentlessly on this idea, refining the logistics and scaling our operations. Eventually, we took Erase Crave to the <span>Global Accelerator Program (GAP)</span> at Chitkara University, Baddi in 2020. Unfortunately, the COVID-19 pandemic forced us to shut down operations, but this experience taught me invaluable lessons in entrepreneurship, product management, and real-world problem-solving.
+            </p>
+            <p class="about-text">
+                In 2022, I was selected as a Product Engineering Intern at <span class="highlight">Gojek</span>, a company known for its cutting-edge technology and large-scale consumer applications. I joined their Customer Platforms team, where I worked on <span class="highlight">GoClub</span>, Gojek’s loyalty program. My role involved fixing critical bugs on their internal React.js-based portals, optimizing the platform’s microservices, and implementing enhancements that improved the overall experience for millions of users. 
+                Additionally, I contributed to deploying configuration changes, writing unit tests in Go to increase code coverage, and even built Grafana dashboards to monitor service performance. This experience gave me a deep understanding of how large-scale systems operate and the importance of <span class="highlight">efficiency, scalability, and monitoring in production environments</span>.
+            </p>
+            <p class="about-text">
+                Following my internship, I took on the role of a PHP Web Developer in January 2023 at <span class="highlight">SparxIT Solutions</span>, where I was responsible for building custom web solutions for small businesses. Here, I developed tailored web applications, ensuring they met client-specific needs while maintaining high performance and security standards. 
+                This role reinforced my ability to work directly with stakeholders, translate business requirements into functional code, and develop scalable web applications.
+            </p>
+            <p class="about-text">
+                I then joined <span class="highlight">Bunge</span>, a global agribusiness and food company, as an <span class="highlight">Analsyt Trainee</span>, where I became part of their digital transformation initiatives. My primary responsibility was helping transition legacy, on-premise applications to modern, cloud-native solutions. 
+                Additionally, I played a crucial role in QA and proactive monitoring of broker feeds based on TIBCO architecture, ensuring data accuracy, system stability, and uninterrupted business operations. This required deep analytical thinking, problem-solving, and working with cross-functional teams to prevent critical failures before they impacted business users.
+            </p>
+            <p class="about-text">
+                Currently, as a <span class="highlight">Senior Analyst at Bunge</span>, I continue to work on modernizing enterprise applications and optimizing digital workflows. My role has expanded to include strategic planning, automation, and performance monitoring, ensuring that our systems remain resilient, scalable, and aligned with business goals. I am deeply passionate about software development, cloud technologies, and automation and love contributing to projects that push the boundaries of technology.
+                I am always open to exciting projects and collaborations, whether in software development, cloud solutions, or automation. Feel free to connect with me—I would love to discuss opportunities where I can contribute and create meaningful impact! 🚀
+            </p>
+            <div class="social-icons">
+                <a href="https://github.com/maugus0" target="_blank">
+                    <img src="../img/github.png" alt="GitHub" class="social-icon">
+                </a>
+                <a href="https://in.linkedin.com/in/maugus0" target="_blank">
+                    <img src="../img/linkedin.png" alt="LinkedIn" class="social-icon">
+                </a>
+            </div>
+        </div>
+    </section>
+
+     <!-- JavaScript Fix for Navbar Overlap -->
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function adjustMargin() {
+                const navbar = document.querySelector(".navbar");
+                const projectsSection = document.getElementById("about");
+        
+                if (navbar && projectsSection) {
+                    const navbarHeight = navbar.offsetHeight;
+                    projectsSection.style.marginTop = navbarHeight + "px";
+                }
+            }
+            adjustMargin();
+            window.addEventListener("resize", adjustMargin);
+        });
+        </script>
+    
+    <footer class="footer">
+        <h2>Let's turn great ideas into scalable cloud native solutions.</h2>   
+        <!-- Copyright & Attribution -->
+        <p>&copy; 2025 Maugus | Ahan Jaiswal.</p>
+        <!-- Back to Top Button -->
+        <button class="back-to-top" onclick="scrollToTop()">&#8679;</button>
+    </footer>
+    <!-- JavaScript for Smooth Scroll -->
+    <script>
+        window.addEventListener("scroll", function () {
+            var backToTopButton = document.querySelector(".back-to-top");
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        });
+    
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
