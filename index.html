@@ -97,7 +97,6 @@
         }
         /* Hero Section Styling */
         .hero {
-            height: 130vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -475,6 +474,22 @@
         <!-- Back to Top Button -->
         <button class="back-to-top" onclick="scrollToTop()">&#8679;</button>
     </footer>
+    <!-- JavaScript Fix for Navbar Overlap -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function adjustMargin() {
+                const navbar = document.querySelector(".navbar");
+                const projectsSection = document.getElementById("heroMaug");
+        
+                if (navbar && projectsSection) {
+                    const navbarHeight = navbar.offsetHeight;
+                    projectsSection.style.marginTop = navbarHeight + 20 + "px";
+                }
+            }
+            adjustMargin();
+            window.addEventListener("resize", adjustMargin);
+        });
+        </script>
     <!-- JavaScript for Smooth Scroll -->
     <script>
         window.addEventListener("scroll", function () {
