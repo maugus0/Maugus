@@ -107,8 +107,21 @@
         }
         /* Container */
         .containerMaug {
-            max-width: 750px;
-            padding: 20px;
+            max-width: 1080px;
+            padding: 10px;
+        }
+        .profile-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        }
+        .centered-image {
+            width: 340px;
+            height: 450px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         /* Title */
         .about-title {
@@ -267,6 +280,9 @@
 
     <section id="about" class="about-section">
         <div class="containerMaug">
+            <div class="profile-image">
+                <img src="../img/profile.png" alt="Ahan Jaiswal" class="centered-image">
+            </div>
             <h2 class="about-title">My Journey | Behind the Code</h2>
             <p class="about-text">
                 From a young age, I found myself drawn to the world of software development. At just 10 years old, I built my first website, experimenting with Blogger and basic web technologies. What started as curiosity quickly turned into a deep-seated passion. I would spend hours tweaking layouts, learning HTML and CSS, and exploring how the internet worked. The ability to create something from scratch and make it accessible to the world fascinated me, and that excitement has only grown stronger over the years.
